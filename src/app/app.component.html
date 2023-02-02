@@ -1,0 +1,72 @@
+<div class="materialContainer">
+  <div class="box">
+    <form [formGroup]="blueForm" (ngSubmit)="convert(null)" autocomplete="off">
+      <input type="text" autocomplete="off" style="display: none" />
+      <div class="input">
+        <img
+          alt="United Kingdom"
+          height="48"
+          src="https://cdn.ipregistry.co/flags/emojitwo/gb.svg"
+        />
+        <input
+          id="gbp"
+          formControlName="gbp"
+          type="text"
+          inputmode="decimal"
+          maxlength="15"
+          (change)="convert($event)"
+          (keyup)="convert($event)"
+          (keydown)="restrictChars($event)"
+        />
+        <span class="rate">{{ this.gbpRate }}</span>
+      </div>
+      <div class="input">
+        <img
+          alt="Euro"
+          height="48"
+          src="https://emojigraph.org/media/joypixels/flag-european-union_1f1ea-1f1fa.png"
+        />
+        <input
+          id="eur"
+          formControlName="eur"
+          type="text"
+          inputmode="decimal"
+          maxlength="15"
+          (change)="convert($event)"
+          (keyup)="convert($event)"
+          (keydown)="restrictChars($event)"
+        />
+      </div>
+      <div class="input">
+        <img
+          alt="Argentina"
+          height="48"
+          src="https://cdn.ipregistry.co/flags/emojitwo/ar.svg"
+        />
+        <input
+          id="ars"
+          formControlName="ars"
+          type="text"
+          inputmode="decimal"
+          maxlength="15"
+          (change)="convert($event)"
+          (keyup)="convert($event)"
+          (keydown)="restrictChars($event)"
+        />
+        <span class="rate">{{ this.blueRate }}</span>
+      </div>
+      <div class="buttons">
+        <div class="button convert">
+          <button (click)="convert(null)"><span>Convertir</span></button>
+        </div>
+        <div class="button clear">
+          <button (click)="this.blueForm.reset()"><span>Borrar</span></button>
+        </div>
+      </div>
+    </form>
+    <div class="footer">
+      <label>Última actualización de cotizaciones: {{ this.lastUpdate | date:'dd/MM/YY HH:mm:ss' }}</label>
+      <span (click)="this.getRates();">Actualizar ahora</span>
+    </div>
+  </div>
+</div>
